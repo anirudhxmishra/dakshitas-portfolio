@@ -1,5 +1,3 @@
-/* ── Publications & Certifications Section ── */
-
 .projects-container {
     display: flex;
     flex-direction: column;
@@ -14,117 +12,177 @@
 }
 
 .section-sub-heading {
-    text-align: center;
-    font-size: 1.35rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
-    opacity: 0.82;
-}
-
-/* ── Publication cards grid ── */
-.projects-container .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 32px;
-}
-
-.projects-container .projects-grid .project {
+    margin-bottom: 1.4rem;
+    opacity: 0.6;
+    letter-spacing: 0.02em;
     text-align: left;
 }
 
-/* DOI link */
+/* ── Publication cards ── */
+.projects-container .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+}
+
+.pub-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.4rem 1.6rem;
+    border-radius: 10px;
+}
+
+.dark-mode .pub-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    /* border-left overridden inline */
+    border-left-width: 3px;
+}
+.light-mode .pub-card {
+    background: rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-left-width: 3px;
+}
+
+.pub-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pub-journal-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 999px;
+    border: 1px solid;
+    font-family: 'Lato', sans-serif;
+}
+
+.pub-title {
+    font-size: 0.97rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    transition: opacity 0.15s ease;
+
+    &:hover { opacity: 0.8; }
+}
+
+.pub-abstract {
+    font-size: 0.86rem;
+    line-height: 1.7;
+    margin: 0;
+    opacity: 0.75;
+    flex: 1;
+}
+
 .doi-link {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 700;
     text-decoration: none;
-    margin-top: auto;
+    letter-spacing: 0.01em;
 
-    &:hover {
-        text-decoration: underline;
-    }
+    &:hover { text-decoration: underline; }
 }
 
-/* ── Certifications grid ── */
+/* ── Certification cards ── */
 .cert-grid {
     display: grid;
+    gap: 1rem;
+}
+
+.cert-row-3 {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.1rem;
+    margin-bottom: 1rem;
 }
 
-/* ── Light mode: card text always readable ── */
-.light-mode .cert-card p,
-.light-mode .pub-card p {
-    color: #1a1a1a;
+.cert-row-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 66.66%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* ── Dark mode: lighten cert card backgrounds slightly ── */
+.cert-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.1rem 1.2rem;
+    border-radius: 10px;
+    position: relative;
+}
+
 .dark-mode .cert-card {
-    filter: brightness(0.92);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-top-width: 2px;
+}
+.light-mode .cert-card {
+    background: rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-top-width: 2px;
 }
 
-.dark-mode .pub-card > div:first-child {
-    filter: brightness(0.88);
+.cert-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-bottom: 0.3rem;
+    opacity: 0.85;
 }
 
-/* ── Zoom legacy ── */
-.zoom {
-    border-radius: 5px;
-    transition: transform .2s;
-    margin: 0 auto;
+.cert-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
 }
 
-.zoom:hover {
-    transform: scale(1.05);
+.cert-org {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: block;
+}
+
+.cert-desc {
+    font-size: 0.82rem;
+    margin: 0;
+    line-height: 1.6;
+    opacity: 0.68;
 }
 
 /* ── Responsive ── */
 @media screen {
+    @media (max-width: 900px) {
+        .cert-row-3,
+        .cert-row-2 {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 100%;
+        }
+    }
+
     @media (max-width: 700px) {
         .projects-container {
-            display: block;
             padding-left: 5%;
             padding-right: 5%;
         }
 
         .projects-container .projects-grid {
-            display: block;
-        }
-
-        .projects-container .projects-grid .project {
-            padding-bottom: 5%;
-        }
-
-        .cert-grid {
             grid-template-columns: 1fr;
         }
-    }
-}
 
-/* ── Cert row layouts ── */
-.cert-row-3 {
-    grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 1.1rem;
-}
-
-.cert-row-2 {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 66.66%;       /* matches width of 2 out of 3 columns */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media screen and (max-width: 900px) {
-    .cert-row-3,
-    .cert-row-2 {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 100%;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .cert-row-3,
-    .cert-row-2 {
-        grid-template-columns: 1fr;
-        max-width: 100%;
+        .cert-row-3,
+        .cert-row-2 {
+            grid-template-columns: 1fr;
+            max-width: 100%;
+        }
     }
 }

@@ -1,8 +1,7 @@
-/* ── Vertical line: visible in BOTH themes ── */
+/* ── Vertical line ── */
 .dark-mode .vertical-timeline::before {
     background: rgba(255, 255, 255, 0.25) !important;
 }
-
 .light-mode .vertical-timeline::before {
     background: rgba(80, 0, 202, 0.35) !important;
 }
@@ -22,8 +21,6 @@
     color: white;
     font-family: 'Courier Prime', monospace;
 }
-
-/* ── Card text — colors set per-card via inline styles in Timeline.tsx ── */
 
 .vertical-timeline-element p {
     color: #2d2d2d;
@@ -47,14 +44,36 @@
     }
 }
 
-/* ── Responsive: date goes below card, needs dark color ── */
+/* ── Sub-sections ── */
+.timeline-sub-section {
+    padding-top: 0 !important;
+}
+
+.timeline-sub-heading {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 36px;
+        height: 3px;
+        background: #a855f7;
+        border-radius: 2px;
+        margin-top: 5px;
+    }
+}
+
+/* ── Responsive: date goes below card ── */
 @media screen and (max-width: 1170px) {
     .vertical-timeline-element .vertical-timeline-element-date {
         color: rgb(39, 40, 34);
     }
 }
 
-/* ── Light mode: date on wide screen still readable ── */
 .light-mode .vertical-timeline--two-columns
   .vertical-timeline-element-content
   .vertical-timeline-element-date {
