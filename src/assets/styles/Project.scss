@@ -1,35 +1,83 @@
+/* ── Publications & Certifications Section ── */
+
 .projects-container {
     display: flex;
     flex-direction: column;
     padding: 5% 10%;
     text-align: left;
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+    }
 }
-  
+
+.section-sub-heading {
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    opacity: 0.82;
+}
+
+/* ── Publication cards grid ── */
 .projects-container .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 50px;
+    grid-gap: 32px;
 }
-  
+
 .projects-container .projects-grid .project {
     text-align: left;
 }
-  
-.project h2:hover {
-    text-decoration: underline;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+
+/* DOI link */
+.doi-link {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: auto;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
-  
+
+/* ── Certifications grid ── */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+}
+
+/* ── Light mode: card text always readable ── */
+.light-mode .cert-card p,
+.light-mode .pub-card p {
+    color: #1a1a1a;
+}
+
+/* ── Dark mode: lighten cert card backgrounds slightly ── */
+.dark-mode .cert-card {
+    filter: brightness(0.92);
+}
+
+.dark-mode .pub-card > div:first-child {
+    filter: brightness(0.88);
+}
+
+/* ── Zoom legacy ── */
 .zoom {
     border-radius: 5px;
     transition: transform .2s;
     margin: 0 auto;
 }
-  
+
 .zoom:hover {
     transform: scale(1.05);
 }
 
+/* ── Responsive ── */
 @media screen {
     @media (max-width: 700px) {
         .projects-container {
@@ -37,13 +85,46 @@
             padding-left: 5%;
             padding-right: 5%;
         }
-  
+
         .projects-container .projects-grid {
             display: block;
         }
-      
+
         .projects-container .projects-grid .project {
             padding-bottom: 5%;
         }
+
+        .cert-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+/* ── Cert row layouts ── */
+.cert-row-3 {
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 1.1rem;
+}
+
+.cert-row-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 66.66%;       /* matches width of 2 out of 3 columns */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 900px) {
+    .cert-row-3,
+    .cert-row-2 {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cert-row-3,
+    .cert-row-2 {
+        grid-template-columns: 1fr;
+        max-width: 100%;
     }
 }

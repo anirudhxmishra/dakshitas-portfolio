@@ -17,11 +17,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 
 const drawerWidth = 240;
-const navItems = [['Expertise', 'expertise'], ['History', 'history'], ['Projects', 'projects'], ['Contact', 'contact']];
+const navItems = [
+  ['Expertise', 'expertise'],
+  ['History', 'history'],
+  ['Publications', 'projects'],
+  ['Contact', 'contact']
+];
 
-function Navigation({parentToChild, modeChange}: any) {
+function Navigation({ parentToChild, modeChange }: any) {
 
-  const {mode} = parentToChild;
+  const { mode } = parentToChild;
 
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -40,32 +45,42 @@ function Navigation({parentToChild, modeChange}: any) {
     };
 
     window.addEventListener('scroll', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const scrollToSection = (section: string) => {
-    console.log(section)
-    const expertiseElement = document.getElementById(section);
-    if (expertiseElement) {
-      expertiseElement.scrollIntoView({ behavior: 'smooth' });
-      console.log('Scrolling to:', expertiseElement);  // Debugging: Ensure the element is found
-    } else {
-      console.error('Element with id "expertise" not found');  // Debugging: Log error if element is not found
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const drawer = (
     <Box className="navigation-bar-responsive" onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <p className="mobile-menu-top"><ListIcon/>Menu</p>
-      <Divider />
+      <p className="mobile-menu-top" style={{ color: mode === 'dark' ? 'rgba(255,255,255,0.9)' : '#0d1116' }}>
+        <ListIcon style={{ color: mode === 'dark' ? 'rgba(255,255,255,0.9)' : '#0d1116' }} />Menu
+      </p>
+      <Divider sx={{ borderColor: mode === 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.12)' }} />
       <List>
         {navItems.map((item) => (
           <ListItem key={item[0]} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }} onClick={() => scrollToSection(item[1])}>
-              <ListItemText primary={item[0]} />
+            <ListItemButton
+              sx={{
+                textAlign: 'center',
+                '&:hover': {
+                  backgroundColor: mode === 'dark' ? 'rgba(168,85,247,0.15)' : 'rgba(80,0,202,0.07)',
+                },
+              }}
+              onClick={() => scrollToSection(item[1])}
+            >
+              <ListItemText
+                primary={item[0]}
+                primaryTypographyProps={{
+                  style: { color: mode === 'dark' ? 'rgba(255,255,255,0.92)' : '#0d1116', fontFamily: 'Lato, sans-serif', fontWeight: 500 }
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -88,9 +103,9 @@ function Navigation({parentToChild, modeChange}: any) {
             <MenuIcon />
           </IconButton>
           {mode === 'dark' ? (
-            <LightModeIcon onClick={() => modeChange()}/>
+            <LightModeIcon onClick={() => modeChange()} />
           ) : (
-            <DarkModeIcon onClick={() => modeChange()}/>
+            <DarkModeIcon onClick={() => modeChange()} />
           )}
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
@@ -107,11 +122,16 @@ function Navigation({parentToChild, modeChange}: any) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+              backgroundColor: mode === 'dark' ? '#1a1a2e' : '#ffffff',
+              color: mode === 'dark' ? 'rgba(255,255,255,0.9)' : '#0d1116',
+            },
           }}
         >
           {drawer}

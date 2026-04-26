@@ -1,38 +1,62 @@
-.vertical-timeline span {
+/* ── Vertical line: visible in BOTH themes ── */
+.dark-mode .vertical-timeline::before {
+    background: rgba(255, 255, 255, 0.25) !important;
+}
+
+.light-mode .vertical-timeline::before {
+    background: rgba(80, 0, 202, 0.35) !important;
+}
+
+/* ── Icon SVG ── */
+.svg-inline--fa {
+    color: white;
+}
+
+/* ── Icon circle glow ── */
+.vertical-timeline-element-icon {
+    box-shadow: 0 0 0 4px #a855f7, inset 0 2px 0 rgba(0,0,0,.06), 0 3px 0 4px rgba(0,0,0,.05) !important;
+}
+
+/* ── Date text ── */
+.vertical-timeline-element .vertical-timeline-element-date {
     color: white;
     font-family: 'Courier Prime', monospace;
 }
 
-.vertical-timeline p {
-    color: rgb(39, 40, 34);
-}
+/* ── Card text — colors set per-card via inline styles in Timeline.tsx ── */
 
 .vertical-timeline-element p {
-    color: rgb(39, 40, 34);
-}
-
-.vertical-timeline-element h3 {
-    color: rgb(39, 40, 34);
-}
-
-.vertical-timeline-element h4 {
-    color: rgb(39, 40, 34);
+    color: #2d2d2d;
 }
 
 .vertical-timeline-element span {
     color: rgb(39, 40, 34);
 }
 
-.vertical-timeline-element .vertical-timeline-element-date {
-    color: white;
+.vertical-timeline span {
+    font-family: 'Courier Prime', monospace;
 }
 
-.svg-inline--fa {
-    color: white;
+/* ── Card hover lift ── */
+.vertical-timeline-element-content {
+    border-radius: 12px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+
+    &:hover {
+        transform: translateY(-4px);
+    }
 }
 
+/* ── Responsive: date goes below card, needs dark color ── */
 @media screen and (max-width: 1170px) {
     .vertical-timeline-element .vertical-timeline-element-date {
         color: rgb(39, 40, 34);
     }
+}
+
+/* ── Light mode: date on wide screen still readable ── */
+.light-mode .vertical-timeline--two-columns
+  .vertical-timeline-element-content
+  .vertical-timeline-element-date {
+    color: rgba(0, 0, 0, 0.55);
 }

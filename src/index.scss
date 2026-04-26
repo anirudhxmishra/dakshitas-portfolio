@@ -56,6 +56,24 @@ p, a, h1, h2, h3, h4, h5, label, button {
   }
 }
 
+/* Dark mode drawer */
+.dark-mode .navigation-bar-responsive {
+  background-color: #1a1a2e;
+
+  span, p, .MuiListItemText-primary {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-family: "Lato", sans-serif;
+  }
+
+  .MuiDivider-root {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .MuiListItemButton-root:hover {
+    background-color: rgba(168, 85, 247, 0.15);
+  }
+}
+
 .container {
   margin-top: 64px;
   width: 100%;
